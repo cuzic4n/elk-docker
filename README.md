@@ -93,34 +93,7 @@ Beware that for every item in the comma separated list, filebeat will make a sep
 $ source .env.tenantname
 ```
 
-3. To run the ELK container, use the following code to create a docker-compose.yml on your machine.
-```
-version: '3.7'
-services:
-  elk:
-    image: sandeepc0/elk-fidc
-    container_name: elk-forgerock-idcloud
-    environment:
-      - ES_HEAP_SIZE="4G"
-      - LOGSTASH_START="0"
-    ports:
-      - "5601:5601"
-      - "9200:9200"
-      - "5044:5044"
-  filebeat:
-    image: sandeepc0/filebeat-fidc
-    container_name: filebeat-forgerock-idcloud
-    environment:
-      - TOGGLE_FOR_RESTART="no"
-      - FIDC_ORIGIN
-      - FIDC_API_KEY_ID
-      - FIDC_API_KEY_SECRET
-      - FIDC_LOG_SOURCE
-      - FIDC_LOG_START_TIME         # optional: only needed when pulling historical logs (not tailing)
-      - FIDC_LOG_END_TIME           # optional: only needed when pulling historical logs (not tailing)
-      - FIDC_PULL_INTERVAL          # optional: default 10s (this is only used when FIDC_LOG_START_TIME is used)
-      - FIDC_LOG_REQUEST_TIMEOUT    # optional: default 1m
-```
+3. To run the ELK container, use the [sample docker-compose.yml](docker-compose.yml) on your machine.
 
 Or, download [docker-compose.yml](https://raw.githubusercontent.com/atomicsamurai/filebeat-docker/main/docker-compose.yml)
 
